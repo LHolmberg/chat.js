@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Chat</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="/styles.css" />
+    </head>
+    <body>
+        <div id="websocket-chat">
+            <div class="row">
+                <div class="col-10"><h2 id="h2"></h2></div>
+                <div class="col"><button id="log" style="height: 6.2vh; background-color: rgb(87, 87, 87);">Log out</button></div>
+            </div>
+            <div id="chat-window">
+                <div id="output"></div>
+                <div id="feedback"></div>
+            </div>    
+            <div class="row">
+                <div class="col-10"><input id="message" type="text" placeholder="Message"/></div>
+                <div class="col-2"><button id="send">Send</button></div>
+            </div>
+        </div>
+        <script>
+            if(localStorage.getItem("username") == null || localStorage.getItem("username") == "null") {
+                window.open("login.html","_self")
+            }
+            document.getElementById("h2").innerText = "Logged in as: " + localStorage.getItem("username");
+            document.getElementById("log").onclick = function(){
+                localStorage.setItem("username", null);
+                window.open("index.html", "_self");
+            }
+        </script>
+        <script src="/chat.js"></script>
+    </body>
+</html>
